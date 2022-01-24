@@ -18,16 +18,32 @@ const clocks = require('./routes/clock')
 dotenv.config({ path: './config/config.env'})
 // use of express 
 const app = express()
+
+// Body parser 
+app.use(express.json())
+
+app.use(function (req, res, next) {
+
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+    // Pass to next layer of middleware
+    next();
+});
+
+
 // middleware 
 if(process.env.NODE_ENV = 'development'){
     app.use(morgan('dev'))
 }
 app.use('/api/v1/clocks', clocks)
 
+
 // cors 
 app.use(cors({
     origin: '*'
-}))
+}));
 
 // PORT
 const PORT = process.env.PORT || 5000

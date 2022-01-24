@@ -1,5 +1,5 @@
 const express = require('express')
-const {getClock, getClocks, updateClock,deleteClock,createClock} = require('../controller/clock')
+const {getClock, getClocks, updateClock,deleteClock,createClock} = require('../controller/clocks')
 const router = express.Router()
 
 
