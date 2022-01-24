@@ -8,7 +8,7 @@ const Clock = require('../models/Clock')
 
 exports.getClocks = asyncHandler(async(req,res, next) =>{
     const clocks = await Clock.find()
-    res.status(200).json({success: true, msg: 'Show all clock times', data: clocks})
+    res.status(200).json({success: true, data: clocks})
 })
 
 // @desc    Get request for all clocks 
@@ -19,7 +19,7 @@ exports.getClock = asyncHandler(async(req,res, next) =>{
 
     const clock = await Clock.findById(req.params.id)
     // const clock = await Clock.findById(req.)
-    res.status(200).json({success: true, msg: 'Show one clock time', data: clock})
+    res.status(200).json({success: true, data: clock})
 })
 
 // @desc    POST request for all clocks 
@@ -46,7 +46,7 @@ exports.updateClock = asyncHandler(async(req,res, next) =>{
         new: true,
         runValidators: true
     })
-    res.status(200).json({success: true, msg: 'Update Clock', data: clock})
+    res.status(200).json({success: true, data: clock})
 })
 
 // @desc    DELETE request for all clocks 
